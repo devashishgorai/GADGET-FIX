@@ -1,6 +1,6 @@
 # 🚀gadgetfix — Gadget Repair & Accessories Platform
 
-Fixify+ is a modern, responsive web application for booking mobile/laptop repairs and purchasing accessories. Built with a clean, premium UI inspired by real startup products.
+It is a modern, responsive web application for booking mobile/laptop repairs and purchasing accessories. Built with a clean, premium UI inspired by real startup products.
 
 ---
 
