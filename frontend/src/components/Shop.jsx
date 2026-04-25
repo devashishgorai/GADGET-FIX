@@ -53,57 +53,52 @@ function Shop() {
   ];
 
   return (
-    <section className="px-4 py-10 md:px-6">
-      <div className="apple-shell">
-        <div className="mb-10 flex items-center justify-between">
-          <h2 className="text-3xl font-semibold tracking-tight">Shop Accessories</h2>
-      </div>
-
+    <motion.div
+      variants={staggerContainer}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="grid gap-5 md:grid-cols-3 md:gap-7"
+    >
+      {products.map((p) => (
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid gap-7 md:grid-cols-3"
+          key={p.id}
+          variants={staggerItem}
+          whileHover={simplifyMotion ? undefined : { y: -7 }}
+          className="apple-card group overflow-hidden"
         >
-          {products.map((p) => (
-            <motion.div
-              key={p.id}
-              variants={staggerItem}
-              whileHover={simplifyMotion ? undefined : { y: -7 }}
-              className="apple-card group overflow-hidden"
+          <div className="overflow-hidden rounded-t-3xl">
+            <img
+              src={p.image}
+              alt={p.name}
+              className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          <div className="p-5">
+            <h3 className="text-lg font-semibold tracking-tight">{p.name}</h3>
+
+            <div className="mt-1 flex items-center gap-1 text-sm text-yellow-500">
+              <Star size={16} fill="currentColor" />
+              {p.rating}
+            </div>
+
+            <p className="mt-2 font-medium text-[var(--apple-muted)]">₹{p.price}</p>
+            <p className="mt-1 text-sm text-[var(--apple-muted)]">Fast dispatch and compatibility support included.</p>
+
+            <button
+              type="button"
+              onClick={() => addToCart(p)}
+              className="btn-primary mt-4 w-full gap-2 rounded-2xl"
+              aria-label={`Add ${p.name} to cart for ${p.price} rupees`}
             >
-              <div className="overflow-hidden rounded-t-3xl">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                />
-              </div>
-
-              <div className="p-5">
-                <h3 className="text-lg font-semibold tracking-tight">{p.name}</h3>
-
-                <div className="mt-1 flex items-center gap-1 text-sm text-yellow-500">
-                  <Star size={16} fill="currentColor" />
-                  {p.rating}
-                </div>
-
-                <p className="mt-2 font-medium text-[var(--apple-muted)]">₹{p.price}</p>
-
-                <button
-                  onClick={() => addToCart(p)}
-                  className="btn-primary mt-4 w-full gap-2 rounded-2xl"
-                >
-                  <ShoppingCart size={18} />
-                  Add to Cart
-                </button>
-              </div>
-            </motion.div>
-          ))}
+              <ShoppingCart size={18} />
+              Add to Cart Securely
+            </button>
+          </div>
         </motion.div>
-      </div>
-    </section>
+      ))}
+    </motion.div>
   );
 }
 

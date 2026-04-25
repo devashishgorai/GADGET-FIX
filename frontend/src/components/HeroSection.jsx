@@ -2,32 +2,39 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useAdaptiveMotion from "../hooks/useAdaptiveMotion";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const slides = [
     {
-      title: "Premium Mobile and Laptop Repair, Done with Precision.",
+      title: "Reduce Device Downtime Without Repair Guesswork.",
       subtitle:
-        "Expert diagnostics, transparent pricing, and warranty-backed repair for the devices you rely on.",
+        "Get a clear diagnosis, transparent estimate, and priority booking in one guided flow.",
       image: "/hero/remobile.jpg",
-      cta: "Start Diagnosis",
-      secondary: "View Services",
+      cta: "Get My Repair Quote",
+      secondary: "Explore Service Plans",
+      ctaPath: "/contact",
+      secondaryPath: "/services",
     },
     {
-      title: "Trusted Repairs for Modern Devices and Demanding Workflows.",
+      title: "Repair Coverage Built for Teams and Power Users.",
       subtitle:
-        "From motherboard-level troubleshooting to fast screen and battery replacements, we repair with clarity and care.",
+        "From board-level diagnostics to same-day parts replacement, every step is tracked and communicated.",
       image: "/hero/remobile1.jpg",
-      cta: "Start Diagnosis",
-      secondary: "Contact Expert",
+      cta: "Book Priority Support",
+      secondary: "Talk to a Specialist",
+      ctaPath: "/contact",
+      secondaryPath: "/contact",
     },
     {
-      title: "Performance Restored Without the Guesswork.",
+      title: "Performance Restored with Premium-Grade Components.",
       subtitle:
-        "Same-day support, premium components, and dependable service for mobile and laptop owners.",
+        "Choose reliable accessories and repair parts designed for long-term device health.",
       image: "/hero/relaptop.png",
-      cta: "Start Diagnosis",
+      cta: "Start My Diagnostic",
       secondary: "Browse Shop",
+      ctaPath: "/contact",
+      secondaryPath: "/shop",
     },
   ];
 
@@ -78,7 +85,7 @@ export default function HeroSection() {
               key={activeSlide.image}
               src={activeSlide.image}
               alt="Gadget repair showcase"
-              className="h-[460px] w-full object-cover object-center md:h-[620px]"
+              className="hero-image h-[460px] w-full object-cover object-center md:h-[620px]"
               initial={reduceMotion ? false : { opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 1.02 }}
@@ -90,8 +97,8 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/35 to-black/15" />
 
           <div className="absolute left-6 top-8 z-10 md:left-12 md:top-12">
-            <span className="glass inline-flex rounded-full px-4 py-1 text-xs font-medium tracking-wide text-white md:text-sm">
-               Repair Studio
+            <span className="glass inline-flex rounded-full px-4 py-1 text-xs font-semibold tracking-wide text-white md:text-sm">
+              SaaS-Grade Repair Ops
             </span>
           </div>
 
@@ -110,15 +117,33 @@ export default function HeroSection() {
                 <h1 className="apple-display whitespace-pre-line text-white">
                   {activeSlide.title}
                 </h1>
-                <p className="mt-4 max-w-lg text-sm text-white/82 md:text-lg">
+                <p className="mt-4 max-w-lg text-sm text-white/92 md:text-lg">
                   {activeSlide.subtitle}
                 </p>
 
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <span className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white/90">
+                    10,000+ completed tickets
+                  </span>
+                  <span className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-medium text-white/90">
+                    2 hour average quick-fix
+                  </span>
+                </div>
+
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <button className="btn-primary">{activeSlide.cta}</button>
-                  <button className="btn-secondary border-white/30 bg-white/10 text-white hover:bg-white/20">
-                    {activeSlide.secondary}
-                  </button>
+                  <Link to={activeSlide.ctaPath}>
+                    <button className="btn-primary" aria-label={`${activeSlide.cta} from hero section`}>
+                      {activeSlide.cta}
+                    </button>
+                  </Link>
+                  <Link to={activeSlide.secondaryPath}>
+                    <button
+                      className="btn-secondary border-white/30 bg-white/10 text-white hover:bg-white/20"
+                      aria-label={`${activeSlide.secondary} from hero section`}
+                    >
+                      {activeSlide.secondary}
+                    </button>
+                  </Link>
                 </div>
               </motion.div>
             </AnimatePresence>

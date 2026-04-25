@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --apple-bg: #eef4fc;
+  --apple-bg: #edf3fb;
   --apple-surface: #ffffff;
-  --apple-surface-soft: #f7faff;
-  --apple-text: #1d1d1f;
-  --apple-muted: #6e6e73;
-  --apple-border: rgba(11, 58, 120, 0.08);
-  --apple-blue: #0b3a78;
-  --apple-blue-hover: #165dca;
-  --apple-shadow: 0 20px 48px rgba(11, 58, 120, 0.08);
-  --space-page-top: 5.35rem;
+  --apple-surface-soft: #f6f9ff;
+  --apple-text: #141726;
+  --apple-muted: #4f5669;
+  --apple-border: rgba(15, 44, 88, 0.12);
+  --apple-blue: #0d3f86;
+  --apple-blue-hover: #1c63d3;
+  --apple-accent: #2c8cff;
+  --apple-shadow: 0 24px 54px rgba(13, 41, 92, 0.1);
+  --space-page-top: 6rem;
   --space-section-sm: 3.5rem;
   --space-section-md: 4.75rem;
   --space-section-lg: 6rem;
@@ -34,10 +35,10 @@ html {
 
 body {
   margin: 0;
-  background: radial-gradient(1000px 380px at 50% -200px, rgba(232, 239, 248, 0.95) 0%, transparent 70%),
+  background: radial-gradient(1000px 380px at 50% -200px, rgba(228, 238, 252, 0.95) 0%, transparent 70%),
     var(--apple-bg);
   color: var(--apple-text);
-  font-family: "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Manrope", "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: -0.01em;
   font-size: 16px;
   line-height: 1.45;
@@ -70,13 +71,34 @@ body {
   margin: 0 auto;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 70;
+  transform: translateY(-180%);
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--apple-text);
+  border: 1px solid var(--apple-border);
+  box-shadow: 0 8px 20px rgba(10, 28, 58, 0.16);
+  padding: 0.55rem 0.95rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
 .app-shell {
   overflow-x: clip;
   background:
-    radial-gradient(1200px 420px at 50% -240px, rgba(110, 168, 242, 0.46) 0%, rgba(110, 168, 242, 0) 68%),
-    radial-gradient(760px 320px at 0% 18%, rgba(130, 178, 238, 0.2) 0%, rgba(130, 178, 238, 0) 62%),
-    radial-gradient(700px 300px at 100% 22%, rgba(126, 152, 221, 0.18) 0%, rgba(126, 152, 221, 0) 60%),
-    linear-gradient(180deg, #eef4fc 0%, #e8effa 42%, #e2eaf7 100%);
+    radial-gradient(1200px 430px at 50% -240px, rgba(94, 163, 255, 0.42) 0%, rgba(94, 163, 255, 0) 70%),
+    radial-gradient(820px 340px at 0% 18%, rgba(133, 184, 246, 0.2) 0%, rgba(133, 184, 246, 0) 62%),
+    radial-gradient(760px 320px at 100% 22%, rgba(118, 153, 230, 0.18) 0%, rgba(118, 153, 230, 0) 60%),
+    linear-gradient(180deg, #eef4fd 0%, #e8f0fb 44%, #e0e9f8 100%);
 }
 
 .top-light-main,
@@ -105,13 +127,13 @@ body {
 
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium text-white;
-  background: var(--apple-blue);
-  box-shadow: 0 10px 24px rgba(11, 58, 120, 0.22);
+  background: linear-gradient(135deg, var(--apple-blue), var(--apple-accent));
+  box-shadow: 0 12px 28px rgba(13, 63, 134, 0.24);
   transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
 }
 
 .btn-primary:hover {
-  background: var(--apple-blue-hover);
+  background: linear-gradient(135deg, var(--apple-blue-hover), #4a9cff);
   transform: translateY(-1px);
 }
 
@@ -129,11 +151,47 @@ body {
   background: rgba(255, 255, 255, 0.95);
 }
 
+a,
+button,
+input,
+textarea,
+select {
+  outline-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(16, 98, 215, 0.46);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .apple-card {
   @apply rounded-3xl;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.84));
-  border: 1px solid var(--apple-border);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   box-shadow: var(--apple-shadow);
+}
+
+.saas-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(13, 63, 134, 0.15);
+  background: rgba(255, 255, 255, 0.75);
+  padding: 0.4rem 0.78rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--apple-blue);
 }
 
 .glass {
@@ -247,7 +305,7 @@ body {
   }
 
   :root {
-    --space-page-top: 5rem;
+    --space-page-top: 5.5rem;
     --space-section-sm: 2.6rem;
     --space-section-md: 3.5rem;
     --space-section-lg: 4.4rem;
@@ -280,6 +338,44 @@ body {
       radial-gradient(520px 220px at 0% 16%, rgba(130, 178, 238, 0.14) 0%, rgba(130, 178, 238, 0) 62%),
       radial-gradient(500px 210px at 100% 20%, rgba(126, 152, 221, 0.14) 0%, rgba(126, 152, 221, 0) 62%),
       linear-gradient(180deg, #ecf2fb 0%, #e6edf8 46%, #dde6f4 100%);
+  }
+}
+
+@media (max-width: 375px) {
+  :root {
+    --space-page-top: 5.1rem;
+    --space-section-sm: 2.2rem;
+    --space-section-md: 2.9rem;
+    --space-section-lg: 3.6rem;
+  }
+
+  .apple-shell {
+    width: min(1200px, calc(100% - 1.2rem));
+  }
+
+  .section-title {
+    letter-spacing: -0.024em;
+    line-height: 1.12;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .apple-display {
+    font-size: clamp(1.75rem, 9vw, 2.25rem);
+    line-height: 1.1;
+  }
+
+  .hero-image {
+    height: 390px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.66rem 1rem;
+    font-size: 0.78rem;
   }
 }
 

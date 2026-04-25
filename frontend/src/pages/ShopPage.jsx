@@ -2,6 +2,7 @@
 import Shop from "../components/Shop";
 import { motion } from "framer-motion";
 import useAdaptiveMotion from "../hooks/useAdaptiveMotion";
+import { Link } from "react-router-dom";
 
 export default function ShopPage() {
   const { simplifyMotion } = useAdaptiveMotion();
@@ -27,7 +28,7 @@ export default function ShopPage() {
 
   return (
     <main className="overflow-hidden">
-      <section className="px-4 pb-[var(--space-section-md)] pt-[var(--space-section-sm)] md:px-6">
+      <section className="px-4 pb-[var(--space-section-md)] pt-[var(--space-page-top)] md:px-6">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -36,9 +37,9 @@ export default function ShopPage() {
           className="apple-shell"
         >
           <div className="mb-8 text-center">
-            <h1 className="section-title">Shop Accessories</h1>
+            <h1 className="section-title">Accessories That Extend Device Life</h1>
             <p className="section-subtitle mx-auto max-w-2xl">
-              Explore high-quality accessories for your devices at the best prices. Curated for reliability and style.
+              Shop reliability-tested chargers, covers, and audio gear selected to improve everyday device performance.
             </p>
           </div>
 
@@ -53,7 +54,7 @@ export default function ShopPage() {
         </motion.div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] pt-3 md:px-6">
+      <section className="px-4 pb-[var(--space-section-lg)] pt-1 md:px-6">
         <div className="apple-shell">
           <Shop />
         </div>
@@ -68,15 +69,15 @@ export default function ShopPage() {
           className="apple-shell apple-card px-6 py-12 md:px-10"
         >
           <div className="mb-8 text-center">
-            <h2 className="section-title">Need Help Choosing?</h2>
+            <h2 className="section-title">Not Sure What Fits Your Device?</h2>
             <p className="section-subtitle mx-auto max-w-2xl">
-              Contact our experts for the best recommendations and support.
+              Get curated recommendations from our support team before you place your order.
             </p>
           </div>
           <div className="mt-8 flex justify-center">
-            <a href="/contact">
-              <button className="btn-primary gap-2">Contact Support</button>
-            </a>
+            <Link to="/contact">
+              <button className="btn-primary gap-2" type="button">Get Expert Recommendations</button>
+            </Link>
           </div>
         </motion.div>
       </section>

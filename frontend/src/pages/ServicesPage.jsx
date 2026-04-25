@@ -28,7 +28,7 @@ export default function ServicesPage() {
 
   return (
     <main className="overflow-hidden">
-      <section className="px-4 pb-[var(--space-section-md)] pt-[var(--space-section-sm)] md:px-6">
+      <section className="px-4 pb-[var(--space-section-md)] pt-[var(--space-page-top)] md:px-6">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -37,12 +37,12 @@ export default function ServicesPage() {
           className="apple-shell"
         >
           <div className="mb-8 text-center">
-            <h1 className="section-title">Our Services</h1>
+            <h1 className="section-title">Repair Services Built for Device Uptime</h1>
             <p className="section-subtitle mx-auto max-w-2xl">
-              Fast, reliable, and affordable repair solutions for all your devices—built around precision, trust, and speed.
+              Compare our most-requested repair workflows and book the one that fits your urgency, budget, and device type.
             </p>
             <Link to="/contact">
-              <button className="btn-primary mt-7">Book a Repair</button>
+              <button className="btn-primary mt-7" type="button">Get Priority Booking</button>
             </Link>
           </div>
 
@@ -69,9 +69,9 @@ export default function ServicesPage() {
         </motion.div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] pt-2 md:px-6">
+      <section className="px-4 pb-[var(--space-section-lg)] pt-1 md:px-6">
         <div className="apple-shell">
-          <Services />
+          <Services showHeader={false} />
         </div>
       </section>
 
@@ -84,9 +84,9 @@ export default function ServicesPage() {
           className="apple-shell apple-card px-6 py-12 md:px-10"
         >
           <div className="mb-8 text-center">
-            <h2 className="section-title">Warranty and Trust</h2>
+            <h2 className="section-title">Service Confidence Included</h2>
             <p className="section-subtitle mx-auto max-w-2xl">
-              Precision repair backed by clear communication, genuine-quality parts, and service warranty.
+              Clear approvals, verified components, and warranty coverage at every stage of the repair journey.
             </p>
           </div>
           <div className="grid gap-5 lg:grid-cols-3">
@@ -105,7 +105,7 @@ export default function ServicesPage() {
           </div>
           <div className="mt-8 flex justify-center">
             <Link to="/contact">
-              <button className="btn-primary gap-2">Book a Repair</button>
+              <button className="btn-primary gap-2" type="button">Talk to a Repair Specialist</button>
             </Link>
           </div>
         </motion.div>

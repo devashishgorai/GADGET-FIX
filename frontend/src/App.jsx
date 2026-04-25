@@ -37,12 +37,17 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="app-shell relative isolate min-h-screen bg-[var(--apple-bg)] text-[var(--apple-text)]">
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <div aria-hidden className="top-light-main" />
         <div aria-hidden className="top-light-accent" />
 
         <div className="relative z-10">
           <Navbar />
-          <Router />
+          <div id="main-content" tabIndex={-1}>
+            <Router />
+          </div>
           <Footer />
         </div>
       </div>

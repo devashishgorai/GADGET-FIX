@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { Suspense, lazy } from "react";
 
 /* 🔥 Lazy Loading Pages */
@@ -14,9 +14,9 @@ function NotFound() {
       <div>
         <h1 className="text-4xl font-bold">404</h1>
         <p className="text-gray-600 mt-2">Page not found</p>
-        <a href="/" className="text-blue-600 mt-4 inline-block">
+        <Link to="/" className="text-blue-600 mt-4 inline-block">
           Go Home
-        </a>
+        </Link>
       </div>
     </div>
   );
