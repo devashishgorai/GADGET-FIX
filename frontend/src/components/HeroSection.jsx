@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useAdaptiveMotion from "../hooks/useAdaptiveMotion";
 import { Link } from "react-router-dom";
+import CountUp from "react-countup";
 
 export default function HeroSection() {
   const slides = [
@@ -188,15 +189,41 @@ export default function HeroSection() {
           className="apple-card mt-8 grid gap-5 px-6 py-7 md:grid-cols-3 md:px-10"
         >
           {[
-            { title: "10,000+", desc: "Repairs completed with audited quality checks." },
-            { title: "2 hrs", desc: "Average quick-fix turnaround on standard issues." },
-            { title: "4.8/5", desc: "Customer satisfaction across service and support." },
+            {
+              end: 10000,
+              suffix: "+",
+              duration: 2.2,
+              desc: "Repairs completed with audited quality checks.",
+            },
+            {
+              end: 2,
+              suffix: " hrs",
+              duration: 1.6,
+              desc: "Average quick-fix turnaround on standard issues.",
+            },
+            {
+              end: 4.8,
+              suffix: "/5",
+              decimals: 1,
+              duration: 1.9,
+              desc: "Customer satisfaction across service and support.",
+            },
           ].map((metric, metricIndex) => (
             <div
-              key={metric.title}
+              key={metric.desc}
               className={`soft-reveal ${metricIndex === 0 ? "stagger-item-1" : metricIndex === 1 ? "stagger-item-2" : "stagger-item-3"}`}
             >
-              <p className="text-3xl font-semibold tracking-tight md:text-4xl">{metric.title}</p>
+              <p className="text-3xl font-semibold tracking-tight md:text-4xl">
+                <CountUp
+                  end={metric.end}
+                  duration={metric.duration}
+                  decimals={metric.decimals ?? 0}
+                  separator=","
+                  suffix={metric.suffix}
+                  enableScrollSpy
+                  scrollSpyOnce
+                />
+              </p>
               <p className="mt-2 text-sm text-[var(--apple-muted)] md:text-base">{metric.desc}</p>
             </div>
           ))}
