@@ -91,7 +91,7 @@ export default function HeroSection() {
 
           <div className="absolute left-6 top-8 z-10 md:left-12 md:top-12">
             <span className="glass inline-flex rounded-full px-4 py-1 text-xs font-medium tracking-wide text-white md:text-sm">
-              Apple Style Repair Studio
+               Repair Studio
             </span>
           </div>
 
