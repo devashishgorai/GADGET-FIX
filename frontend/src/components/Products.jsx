@@ -55,6 +55,8 @@ export default function Products() {
               <img
                 src={item.image}
                 alt={item.name}
+                loading="lazy"
+                decoding="async"
                 className="h-48 w-full object-cover transition duration-500 group-hover:scale-105"
               />
             </div>

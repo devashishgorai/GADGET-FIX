@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="mt-12 border-t border-black/10 bg-[linear-gradient(180deg,#edf3fb_0%,#e8eef8_100%)] px-6 pb-8 pt-12 text-[var(--apple-muted)] md:mt-14">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 md:grid-cols-5">
+    <footer className="mt-12 border-t border-black/10 bg-[linear-gradient(180deg,#edf3fb_0%,#e8eef8_100%)] px-4 pb-8 pt-12 text-[var(--apple-muted)] sm:px-6 md:mt-14">
+      <div className="mx-auto grid w-full max-w-7xl gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-10">
         <div>
           <h2 className="mb-4 text-2xl font-semibold tracking-tight text-[var(--apple-text)]">
             Gadgetfix<span className="text-[var(--apple-blue)]">+</span>

@@ -28,7 +28,7 @@ export default function ServicesPage() {
 
   return (
     <main className="overflow-hidden">
-      <section className="px-4 pb-[var(--space-section-md)] pt-[var(--space-page-top)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-md)] pt-[var(--space-page-top)] sm:px-4 md:px-6">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -69,19 +69,19 @@ export default function ServicesPage() {
         </motion.div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] pt-1 md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] pt-1 sm:px-4 md:px-6">
         <div className="apple-shell">
           <Services showHeader={false} />
         </div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] sm:px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: simplifyMotion ? 0.2 : 0.38, ease: "easeOut" }}
-          className="apple-shell apple-card px-6 py-12 md:px-10"
+          className="apple-shell apple-card px-5 py-10 sm:px-6 sm:py-12 md:px-10"
         >
           <div className="mb-8 text-center">
             <h2 className="section-title">Service Confidence Included</h2>

@@ -31,6 +31,7 @@ body,
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -44,6 +45,16 @@ body {
   line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 ::selection {
@@ -146,6 +157,11 @@ body {
   transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
+.btn-primary,
+.btn-secondary {
+  min-height: 44px;
+}
+
 .btn-secondary:hover {
   transform: translateY(-1px);
   background: rgba(255, 255, 255, 0.95);
@@ -217,6 +233,7 @@ button:disabled {
   border: 1px solid var(--apple-border);
   background: #ffffff;
   transition: border-color 170ms ease, box-shadow 170ms ease;
+  font-size: 16px;
 }
 
 .input:focus {
@@ -316,7 +333,7 @@ button:disabled {
   }
 
   :root {
-    --space-page-top: 5.9rem;
+    --space-page-top: 6.3rem;
     --space-section-sm: 2.6rem;
     --space-section-md: 3.5rem;
     --space-section-lg: 4.4rem;
@@ -326,6 +343,7 @@ button:disabled {
   .btn-secondary {
     padding: 0.72rem 1.15rem;
     font-size: 0.82rem;
+    min-height: 44px;
   }
 
   .top-light-main,
@@ -353,12 +371,26 @@ button:disabled {
 
   .mobile-sticky-cta {
     margin-bottom: env(safe-area-inset-bottom, 0px);
+    padding-bottom: calc(0.88rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .section-title {
+    line-height: 1.1;
+    letter-spacing: -0.026em;
+  }
+
+  .section-subtitle {
+    line-height: 1.5;
+  }
+
+  .apple-card {
+    border-radius: 1.4rem;
   }
 }
 
 @media (max-width: 375px) {
   :root {
-    --space-page-top: 5.4rem;
+    --space-page-top: 5.9rem;
     --space-section-sm: 2.2rem;
     --space-section-md: 2.9rem;
     --space-section-lg: 3.6rem;

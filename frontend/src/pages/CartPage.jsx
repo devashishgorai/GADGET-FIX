@@ -12,7 +12,7 @@ export default function CartPage() {
   if (!isAuthenticated) {
     return (
       <main className="overflow-hidden">
-        <section className="px-4 pb-[var(--space-section-lg)] pt-[var(--space-page-top)] md:px-6">
+        <section className="px-3 pb-[var(--space-section-lg)] pt-[var(--space-page-top)] sm:px-4 md:px-6">
           <div className="apple-shell max-w-2xl">
             <div className="apple-card p-6 text-center md:p-10">
               <h1 className="section-title">Sign In to View Cart</h1>
@@ -33,7 +33,7 @@ export default function CartPage() {
 
   return (
     <main className="overflow-hidden">
-      <section className="px-4 pb-[var(--space-section-lg)] pt-[var(--space-page-top)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] pt-[var(--space-page-top)] sm:px-4 md:px-6">
         <div className="apple-shell">
           <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
             <div>
@@ -64,7 +64,13 @@ export default function CartPage() {
                 {cart.map((item) => (
                   <div key={item.id} className="apple-card p-4 md:p-5">
                     <div className="flex flex-col gap-4 sm:flex-row">
-                      <img src={item.image} alt={item.name} className="h-24 w-full rounded-2xl object-cover sm:w-24" />
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-24 w-full rounded-2xl object-cover sm:w-24"
+                      />
 
                       <div className="min-w-0 flex-1">
                         <h3 className="truncate text-lg font-semibold tracking-tight">{item.name}</h3>

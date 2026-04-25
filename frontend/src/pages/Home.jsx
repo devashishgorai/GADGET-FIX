@@ -82,7 +82,7 @@ export default function Home() {
     <main className="overflow-hidden">
       <HeroSection />
 
-      <section className="px-4 pb-[var(--space-section-lg)] pt-[var(--space-section-md)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] pt-[var(--space-section-md)] sm:px-4 md:px-6">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -103,7 +103,7 @@ export default function Home() {
                 key={step.title}
                 variants={staggerItem}
                 whileHover={simplifyMotion ? undefined : { y: -6 }}
-                className="apple-card p-7"
+                className="apple-card p-6 sm:p-7"
               >
                 <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[rgba(11,58,120,0.08)] text-[var(--apple-blue)]">
                   {step.icon}
@@ -125,13 +125,13 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] pt-0 md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] pt-0 sm:px-4 md:px-6">
         <div className="apple-shell">
           <Services />
         </div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] sm:px-4 md:px-6">
         <div className="apple-shell">
           <div className="mb-8 text-center">
             <h2 className="section-title">Simple Plans for Every Support Need</h2>
@@ -172,13 +172,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] sm:px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: simplifyMotion ? 0.2 : 0.38, ease: "easeOut" }}
-          className="apple-shell apple-card px-6 py-12 md:px-10"
+          className="apple-shell apple-card px-5 py-10 sm:px-6 sm:py-12 md:px-10"
         >
           <div className="mb-8 text-center">
             <h2 className="section-title">Why High-Usage Users Trust Gadgetfix+</h2>
@@ -210,7 +210,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] sm:px-4 md:px-6">
         <div className="apple-shell">
           <div className="mb-8 text-center">
             <h2 className="section-title">Trusted by Professionals and Teams</h2>
@@ -222,13 +222,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 pb-[var(--space-section-lg)] md:px-6">
+      <section className="px-3 pb-[var(--space-section-lg)] sm:px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: simplifyMotion ? 0.2 : 0.35, ease: "easeOut" }}
-          className="apple-shell overflow-hidden rounded-[2rem] border border-white/75 bg-[linear-gradient(125deg,#0d3f86_0%,#1d5fc4_56%,#5ea8ff_100%)] px-6 py-10 text-white shadow-[0_26px_52px_rgba(11,58,120,0.28)] md:px-10 md:py-12"
+          className="apple-shell overflow-hidden rounded-[1.4rem] border border-white/75 bg-[linear-gradient(125deg,#0d3f86_0%,#1d5fc4_56%,#5ea8ff_100%)] px-5 py-9 text-white shadow-[0_26px_52px_rgba(11,58,120,0.28)] sm:rounded-[2rem] sm:px-6 sm:py-10 md:px-10 md:py-12"
         >
           <div className="grid gap-8 md:grid-cols-[1.35fr_1fr] md:items-end">
             <div>
@@ -243,14 +243,14 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 md:justify-end">
-              <Link to="/contact">
-                <button type="button" className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--apple-blue)] transition hover:bg-[#f2f7ff]">
+            <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3 md:justify-end">
+              <Link to="/contact" className="w-full sm:w-auto">
+                <button type="button" className="w-full rounded-full bg-white px-6 py-3 text-sm font-semibold text-[var(--apple-blue)] transition hover:bg-[#f2f7ff] sm:w-auto">
                   Book a Product Demo
                 </button>
               </Link>
-              <Link to="/services">
-                <button type="button" className="rounded-full border border-white/35 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20">
+              <Link to="/services" className="w-full sm:w-auto">
+                <button type="button" className="w-full rounded-full border border-white/35 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20 sm:w-auto">
                   View Service Modules
                 </button>
               </Link>

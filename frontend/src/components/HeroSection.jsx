@@ -131,15 +131,15 @@ export default function HeroSection() {
   const activeSlide = slides[index];
 
   return (
-    <section ref={heroRef} className="hero-gradient relative overflow-hidden px-4 pb-20 pt-[var(--space-page-top)] md:px-8">
+    <section ref={heroRef} className="hero-gradient relative overflow-hidden px-3 pb-16 pt-[var(--space-page-top)] sm:px-4 md:px-8">
       <div className="apple-shell relative">
-        <div className="hero-stage relative overflow-hidden rounded-[42px] border border-black/10 bg-black shadow-[0_36px_90px_rgba(0,0,0,0.28)]">
+        <div className="hero-stage relative overflow-hidden rounded-[30px] border border-black/10 bg-black shadow-[0_28px_70px_rgba(0,0,0,0.24)] sm:rounded-[42px] sm:shadow-[0_36px_90px_rgba(0,0,0,0.28)]">
           <AnimatePresence mode="wait">
             <motion.img
               key={activeSlide.image}
               src={activeSlide.image}
               alt="Gadget repair showcase"
-              className="hero-image h-[460px] w-full object-cover object-center md:h-[620px]"
+              className="hero-image h-[420px] w-full object-cover object-center sm:h-[460px] md:h-[620px]"
               initial={reduceMotion ? false : { opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={reduceMotion ? { opacity: 1 } : { opacity: 0, scale: 1.02 }}
@@ -150,15 +150,15 @@ export default function HeroSection() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/35 to-black/15" />
 
-          <div className="absolute left-6 top-8 z-10 md:left-12 md:top-12">
-            <span className="inline-flex rounded-full border border-white/85 bg-[#4169E1] px-4 py-1 text-xs font-semibold tracking-wide text-white shadow-[0_10px_24px_rgba(65,105,225,0.45)] md:text-sm">
+          <div className="absolute left-4 top-4 z-10 hidden sm:block sm:left-6 sm:top-8 md:left-12 md:top-12">
+            <span className="inline-flex rounded-full border border-white/85 bg-[#4169E1] px-3 py-1 text-[11px] font-semibold tracking-wide text-white shadow-[0_10px_24px_rgba(65,105,225,0.45)] sm:px-4 sm:text-xs md:text-sm">
               SaaS-Grade Repair Ops
             </span>
           </div>
 
           <motion.div
             style={{ y: copyY, opacity: copyOpacity }}
-            className="absolute bottom-8 left-6 z-10 max-w-xl text-white md:bottom-14 md:left-12"
+            className="absolute bottom-6 left-4 right-4 z-10 max-w-xl text-white sm:bottom-8 sm:left-6 sm:right-auto md:bottom-14 md:left-12"
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -168,10 +168,13 @@ export default function HeroSection() {
                 exit={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
                 transition={heroCopyTransition}
               >
-                <h1 className="apple-display whitespace-pre-line text-white">
+                <span className="mb-3 inline-flex rounded-full border border-white/85 bg-[#4169E1] px-3 py-1 text-[11px] font-semibold tracking-wide text-white shadow-[0_10px_24px_rgba(65,105,225,0.45)] sm:hidden">
+                  SaaS-Grade Repair Ops
+                </span>
+                <h1 className="whitespace-pre-line text-[clamp(2rem,7.1vw,3.9rem)] font-semibold leading-[1.04] tracking-[-0.04em] text-white sm:text-[clamp(2.2rem,7.4vw,4.2rem)]">
                   {activeSlide.title}
                 </h1>
-                <p className="mt-4 max-w-lg text-sm text-white/92 md:text-lg">
+                <p className="mt-3 max-w-lg text-sm text-white/92 md:mt-4 md:text-lg">
                   {activeSlide.subtitle}
                 </p>
 
@@ -184,15 +187,15 @@ export default function HeroSection() {
                   </span>
                 </div>
 
-                <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to={activeSlide.ctaPath}>
-                    <button className="btn-primary" aria-label={`${activeSlide.cta} from hero section`}>
+                <div className="mt-6 flex flex-col gap-2.5 sm:mt-7 sm:flex-row sm:flex-wrap sm:gap-3">
+                  <Link to={activeSlide.ctaPath} className="w-full sm:w-auto">
+                    <button className="btn-primary w-full sm:w-auto" aria-label={`${activeSlide.cta} from hero section`}>
                       {activeSlide.cta}
                     </button>
                   </Link>
-                  <Link to={activeSlide.secondaryPath}>
+                  <Link to={activeSlide.secondaryPath} className="w-full sm:w-auto">
                     <button
-                      className="btn-secondary border-white/30 bg-white/10 text-white hover:bg-white/20"
+                      className="btn-secondary w-full border-white/30 bg-white/10 text-white hover:bg-white/20 sm:w-auto"
                       aria-label={`${activeSlide.secondary} from hero section`}
                     >
                       {activeSlide.secondary}
@@ -239,7 +242,7 @@ export default function HeroSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.42, ease: "easeOut" }}
-          className="apple-card mt-8 grid gap-5 px-6 py-7 md:grid-cols-3 md:px-10"
+          className="apple-card mt-6 grid gap-5 px-5 py-6 sm:mt-8 sm:px-6 sm:py-7 md:grid-cols-3 md:px-10"
         >
           {[
             {

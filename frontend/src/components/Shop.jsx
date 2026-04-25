@@ -82,11 +82,13 @@ function Shop() {
           className="apple-card group overflow-hidden"
         >
           <div className="overflow-hidden rounded-t-3xl">
-            <img
-              src={p.image}
-              alt={p.name}
-              className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-            />
+              <img
+                src={p.image}
+                alt={p.name}
+                loading="lazy"
+                decoding="async"
+                className="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
           </div>
 
           <div className="p-5">
