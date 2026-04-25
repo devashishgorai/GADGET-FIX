@@ -52,8 +52,8 @@ export default function App() {
           <Footer />
         </div>
 
-        <div className="fixed inset-x-0 bottom-3 z-[60] px-4 md:hidden">
-          <Link to="/contact" className="block">
+        <div className="mobile-sticky-wrap fixed inset-x-0 bottom-0 z-[60] px-3 pb-3 md:hidden">
+          <Link to="/contact" className="mx-auto block w-full max-w-md">
             <button type="button" className="mobile-sticky-cta w-full">
               Book Demo
             </button>
