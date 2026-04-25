@@ -1,9 +1,62 @@
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import useAdaptiveMotion from "../hooks/useAdaptiveMotion";
 import { Link } from "react-router-dom";
-import CountUp from "react-countup";
+
+function AnimatedMetric({ end, duration, decimals = 0, suffix = "", shouldAnimate = true }) {
+  const metricRef = useRef(null);
+  const isInView = useInView(metricRef, { once: true, amount: 0.6 });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) {
+      return;
+    }
+
+    if (!shouldAnimate) {
+      setValue(end);
+      return;
+    }
+
+    let frameId;
+    let startTime;
+
+    const tick = (timestamp) => {
+      if (!startTime) {
+        startTime = timestamp;
+      }
+
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      setValue(end * easedProgress);
+
+      if (progress < 1) {
+        frameId = window.requestAnimationFrame(tick);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(tick);
+
+    return () => {
+      if (frameId) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
+  }, [isInView, end, duration, shouldAnimate]);
+
+  const formatted = value.toLocaleString(undefined, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  });
+
+  return (
+    <span ref={metricRef}>
+      {formatted}
+      {suffix}
+    </span>
+  );
+}
 
 export default function HeroSection() {
   const slides = [
@@ -214,14 +267,12 @@ export default function HeroSection() {
               className={`soft-reveal ${metricIndex === 0 ? "stagger-item-1" : metricIndex === 1 ? "stagger-item-2" : "stagger-item-3"}`}
             >
               <p className="text-3xl font-semibold tracking-tight md:text-4xl">
-                <CountUp
+                <AnimatedMetric
                   end={metric.end}
                   duration={metric.duration}
                   decimals={metric.decimals ?? 0}
-                  separator=","
                   suffix={metric.suffix}
-                  enableScrollSpy
-                  scrollSpyOnce
+                  shouldAnimate={!reduceMotion}
                 />
               </p>
               <p className="mt-2 text-sm text-[var(--apple-muted)] md:text-base">{metric.desc}</p>
