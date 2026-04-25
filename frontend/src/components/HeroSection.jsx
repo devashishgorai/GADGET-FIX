@@ -84,7 +84,7 @@ export default function HeroSection() {
       title: "Performance Restored with Premium-Grade Components.",
       subtitle:
         "Choose reliable accessories and repair parts designed for long-term device health.",
-      image: "/hero/relaptop.png",
+      image: "/hero/relaptop.jpg",
       cta: "Start My Diagnostic",
       secondary: "Browse Shop",
       ctaPath: "/contact",
@@ -151,7 +151,7 @@ export default function HeroSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/35 to-black/15" />
 
           <div className="absolute left-6 top-8 z-10 md:left-12 md:top-12">
-            <span className="glass inline-flex rounded-full px-4 py-1 text-xs font-semibold tracking-wide text-white md:text-sm">
+            <span className="inline-flex rounded-full border border-white/85 bg-[#4169E1] px-4 py-1 text-xs font-semibold tracking-wide text-white shadow-[0_10px_24px_rgba(65,105,225,0.45)] md:text-sm">
               SaaS-Grade Repair Ops
             </span>
           </div>

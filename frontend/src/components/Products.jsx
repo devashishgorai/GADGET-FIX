@@ -7,19 +7,19 @@ const items = [
     id: 1,
     name: "Fast Charger",
     price: 499,
-    image: "/hero/remobile.jpg",
+    image: "/hero/fast-charger.jpg",
   },
   {
     id: 2,
     name: "Wireless Earbuds",
     price: 999,
-    image: "/hero/relaptop.png",
+    image: "/hero/wireless-headphones.jpg",
   },
   {
     id: 3,
     name: "USB Cable",
     price: 199,
-    image: "/hero/remobile1.jpg",
+    image: "/hero/premium-phone-cover.jpg",
   },
 ];
 

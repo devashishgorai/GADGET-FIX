@@ -44,25 +44,25 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 px-4 py-2.5 md:px-7">
+    <nav className="fixed inset-x-0 top-0 z-50 px-3 py-2.5 sm:px-4 md:px-6 lg:px-7">
       <div
-        className={`mx-auto flex w-full max-w-6xl items-center justify-between rounded-full border px-5 py-3 transition-all duration-300 md:px-7 ${
+        className={`mx-auto flex w-full max-w-6xl items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-300 sm:rounded-full sm:px-5 sm:py-3 md:px-6 lg:px-7 ${
           scrolled
             ? "border-black/10 bg-white/88 shadow-[0_16px_34px_rgba(12,34,70,0.14)] backdrop-blur-xl"
             : "border-white/65 bg-white/64 shadow-[0_8px_24px_rgba(12,34,70,0.08)] backdrop-blur-lg"
         }`}
       >
-        <Link to="/" className="text-xl font-semibold tracking-tight text-[var(--apple-text)] md:text-2xl">
+        <Link to="/" className="shrink-0 text-lg font-semibold tracking-tight text-[var(--apple-text)] sm:text-xl lg:text-2xl">
           Gadgetfix<span className="text-[var(--apple-blue)]">+</span>
         </Link>
 
-        <div className="hidden items-center space-x-8 md:flex">
+        <div className="hidden items-center gap-4 xl:gap-8 lg:flex">
           {navLinks.map((link, i) => (
             <Link
               key={i}
               to={link.path}
               aria-current={location.pathname === link.path ? "page" : undefined}
-              className={`relative rounded-full px-3 py-1.5 text-sm font-semibold transition ${
+              className={`relative rounded-full px-3 py-1.5 text-xs font-semibold transition xl:text-sm ${
                 location.pathname === link.path
                   ? "bg-white text-[var(--apple-text)] shadow-[0_8px_16px_rgba(11,58,120,0.12)]"
                   : "text-[var(--apple-muted)] hover:text-[var(--apple-text)]"
@@ -105,11 +105,21 @@ export default function Navbar() {
           )}
         </div>
 
-        <div className="md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <Link to="/cart" className="relative inline-flex">
+            <button className="btn-secondary px-3 py-2 text-xs" aria-label="Open cart">
+              <ShoppingBag size={15} />
+            </button>
+            {totalItems > 0 && (
+              <span className="absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--apple-blue)] px-1 text-[10px] font-semibold text-white">
+                {totalItems}
+              </span>
+            )}
+          </Link>
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="text-[var(--apple-text)]"
+            className="rounded-full p-1 text-[var(--apple-text)]"
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
@@ -126,7 +136,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             id="mobile-navigation"
-            className="mx-auto mt-3 w-full max-w-6xl space-y-4 rounded-3xl border border-black/10 bg-white/96 px-6 py-5 shadow-[0_20px_40px_rgba(11,58,120,0.14)] backdrop-blur-xl md:hidden"
+            className="mx-auto mt-2 w-full max-w-6xl space-y-4 rounded-3xl border border-black/10 bg-white/96 px-4 py-4 shadow-[0_20px_40px_rgba(11,58,120,0.14)] backdrop-blur-xl sm:px-6 sm:py-5 lg:hidden"
           >
             <div className="saas-badge">Premium Support Workflow</div>
             {navLinks.map((link, i) => (
