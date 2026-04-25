@@ -53,6 +53,31 @@ export default function Home() {
     { icon: <Clock3 size={18} />, title: "Fast Turnaround", text: "Efficient service flow designed for busy professionals." },
   ];
 
+  const plans = [
+    {
+      name: "Starter",
+      price: "₹499",
+      detail: "Per issue diagnosis",
+      points: ["Guided issue check", "Repair estimate", "Support follow-up"],
+      cta: "Start Starter Plan",
+    },
+    {
+      name: "Pro Care",
+      price: "₹1,499",
+      detail: "Per priority ticket",
+      points: ["Priority queue", "Fast-track repair slot", "Dedicated advisor"],
+      cta: "Choose Pro Care",
+      featured: true,
+    },
+    {
+      name: "Business",
+      price: "Custom",
+      detail: "For teams and offices",
+      points: ["Bulk device support", "SLA-ready workflows", "Consolidated billing"],
+      cta: "Book Business Demo",
+    },
+  ];
+
   return (
     <main className="overflow-hidden">
       <HeroSection />
@@ -103,6 +128,47 @@ export default function Home() {
       <section className="px-4 pb-[var(--space-section-lg)] pt-0 md:px-6">
         <div className="apple-shell">
           <Services />
+        </div>
+      </section>
+
+      <section className="px-4 pb-[var(--space-section-lg)] md:px-6">
+        <div className="apple-shell">
+          <div className="mb-8 text-center">
+            <h2 className="section-title">Simple Plans for Every Support Need</h2>
+            <p className="section-subtitle mx-auto max-w-2xl">
+              Start small, upgrade when needed, and scale to business-grade repair operations.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+            {plans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`apple-card flex h-full flex-col p-5 md:p-6 ${plan.featured ? "border-[rgba(13,63,134,0.35)] shadow-[0_24px_54px_rgba(13,63,134,0.2)]" : ""}`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--apple-blue)]">{plan.name}</p>
+                <p className="mt-2 text-3xl font-semibold tracking-tight">{plan.price}</p>
+                <p className="mt-1 text-sm text-[var(--apple-muted)]">{plan.detail}</p>
+
+                <ul className="mt-4 space-y-2 text-sm text-[var(--apple-text)]">
+                  {plan.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <span className="mt-1 inline-flex h-2 w-2 rounded-full bg-[var(--apple-blue)]" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6">
+                  <Link to="/contact">
+                    <button type="button" className={`w-full ${plan.featured ? "btn-primary" : "btn-secondary"}`}>
+                      {plan.cta}
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

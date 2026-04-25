@@ -44,9 +44,9 @@ export default function Footer() {
         <div>
           <h3 className="mb-4 font-semibold text-[var(--apple-text)]">Company</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-[var(--apple-text)]">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-[var(--apple-text)]">Terms of Service</a></li>
-            <li><a href="#" className="hover:text-[var(--apple-text)]">Warranty Terms</a></li>
+            <li><Link to="/privacy-policy" className="hover:text-[var(--apple-text)]">Privacy Policy</Link></li>
+            <li><Link to="/terms-of-service" className="hover:text-[var(--apple-text)]">Terms of Service</Link></li>
+            <li><Link to="/warranty-terms" className="hover:text-[var(--apple-text)]">Warranty Terms</Link></li>
           </ul>
         </div>
 

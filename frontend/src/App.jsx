@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Router from "./router";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -36,7 +37,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="app-shell relative isolate min-h-screen bg-[var(--apple-bg)] text-[var(--apple-text)]">
+      <div className="app-shell relative isolate min-h-screen bg-[var(--apple-bg)] pb-24 text-[var(--apple-text)] md:pb-0">
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
@@ -49,6 +50,14 @@ export default function App() {
             <Router />
           </div>
           <Footer />
+        </div>
+
+        <div className="fixed inset-x-0 bottom-3 z-[60] px-4 md:hidden">
+          <Link to="/contact" className="block">
+            <button type="button" className="mobile-sticky-cta w-full">
+              Book Demo
+            </button>
+          </Link>
         </div>
       </div>
     </BrowserRouter>

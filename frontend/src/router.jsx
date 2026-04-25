@@ -8,6 +8,9 @@ const ShopPage = lazy(() => import("./pages/ShopPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const CartPage = lazy(() => import("./pages/CartPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
+const WarrantyTermsPage = lazy(() => import("./pages/WarrantyTermsPage"));
 
 /* ❌ 404 Page */
 function NotFound() {
@@ -40,6 +43,9 @@ export default function Router() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+        <Route path="/warranty-terms" element={<WarrantyTermsPage />} />
 
         {/* Future Routes */}
         {/* <Route path="/booking" element={<BookingPage />} /> */}
