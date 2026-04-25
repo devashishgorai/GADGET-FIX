@@ -1,19 +1,108 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export default function LoginPage() {
-  const { user, isAuthenticated, login } = useContext(AuthContext);
+  const { user, isAuthenticated, login, loginWithOAuth } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const googleButtonRef = useRef(null);
 
   const fromPath = useMemo(
     () => location.state?.from?.pathname || "/shop",
     [location.state]
   );
 
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!googleClientId || !googleButtonRef.current) {
+      return;
+    }
+
+    const decodeCredential = (credential) => {
+      try {
+        const parts = credential.split(".");
+        if (parts.length < 2) {
+          return null;
+        }
+
+        const payload = parts[1]
+          .replace(/-/g, "+")
+          .replace(/_/g, "/");
+        const decoded = window.atob(payload.padEnd(payload.length + ((4 - payload.length % 4) % 4), "="));
+        return JSON.parse(decoded);
+      } catch (decodeError) {
+        console.error("Unable to decode Google credential", decodeError);
+        return null;
+      }
+    };
+
+    const handleGoogleResponse = (response) => {
+      const payload = decodeCredential(response.credential || "");
+      if (!payload?.email) {
+        setError("Google sign-in failed. Please try again.");
+        return;
+      }
+
+      const result = loginWithOAuth({
+        email: payload.email,
+        name: payload.name,
+        provider: "google",
+      });
+
+      if (!result.success) {
+        setError(result.message || "Google sign-in failed.");
+        return;
+      }
+
+      navigate(fromPath, { replace: true });
+    };
+
+    const initializeGoogle = () => {
+      if (!window.google?.accounts?.id) {
+        return;
+      }
+
+      window.google.accounts.id.initialize({
+        client_id: googleClientId,
+        callback: handleGoogleResponse,
+      });
+
+      googleButtonRef.current.innerHTML = "";
+      window.google.accounts.id.renderButton(googleButtonRef.current, {
+        theme: "outline",
+        size: "large",
+        shape: "pill",
+        text: "continue_with",
+        width: "320",
+      });
+    };
+
+    if (window.google?.accounts?.id) {
+      initializeGoogle();
+      return;
+    }
+
+    const existingScript = document.getElementById("google-identity-script");
+    if (existingScript) {
+      existingScript.addEventListener("load", initializeGoogle);
+      return () => existingScript.removeEventListener("load", initializeGoogle);
+    }
+
+    const script = document.createElement("script");
+    script.id = "google-identity-script";
+    script.src = "https://accounts.google.com/gsi/client";
+    script.async = true;
+    script.defer = true;
+    script.addEventListener("load", initializeGoogle);
+    document.body.appendChild(script);
+
+    return () => script.removeEventListener("load", initializeGoogle);
+  }, [googleClientId, loginWithOAuth, navigate, fromPath]);
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -96,6 +185,22 @@ export default function LoginPage() {
                 Sign In
               </button>
             </form>
+
+            <div className="my-5 flex items-center gap-3 text-xs text-[var(--apple-muted)]">
+              <span className="h-px flex-1 bg-black/10" />
+              <span>OR CONTINUE WITH</span>
+              <span className="h-px flex-1 bg-black/10" />
+            </div>
+
+            {googleClientId ? (
+              <div className="flex justify-center">
+                <div ref={googleButtonRef} />
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-700">
+                Google OAuth is not configured yet. Add VITE_GOOGLE_CLIENT_ID in your environment to enable it.
+              </div>
+            )}
 
             <div className="mt-5 text-center text-sm text-[var(--apple-muted)]">
               Want to explore first? <Link to="/shop" className="font-semibold text-[var(--apple-blue)]">Browse accessories</Link>

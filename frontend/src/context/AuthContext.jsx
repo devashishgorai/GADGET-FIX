@@ -58,8 +58,27 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const loginWithOAuth = ({ email, name, provider = "google" }) => {
+    if (!email) {
+      return { success: false, message: "OAuth profile is missing email." };
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const profile = {
+      email: normalizedEmail,
+      name: name || normalizedEmail.split("@")[0],
+      provider,
+      loggedInAt: new Date().toISOString(),
+    };
+
+    setUser(profile);
+    return { success: true, user: profile };
+  };
+
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: Boolean(user), login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated: Boolean(user), login, loginWithOAuth, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
