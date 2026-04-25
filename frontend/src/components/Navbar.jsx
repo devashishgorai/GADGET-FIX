@@ -46,12 +46,20 @@ export default function Navbar() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 px-2.5 py-2 sm:px-4 md:px-6 lg:px-7">
       <div
-        className={`mx-auto flex w-full max-w-6xl items-center justify-between rounded-2xl border px-3 py-2 transition-all duration-300 sm:rounded-full sm:px-5 sm:py-3 md:px-6 lg:px-7 ${
+        className={`relative mx-auto flex w-full max-w-6xl items-center justify-between overflow-hidden rounded-2xl border px-3 py-2 transition-all duration-300 sm:rounded-full sm:px-5 sm:py-3 md:px-6 lg:px-7 ${
           scrolled
             ? "border-black/10 bg-white/88 shadow-[0_16px_34px_rgba(12,34,70,0.14),0_0_0_1px_rgba(44,140,255,0.2),0_0_24px_rgba(44,140,255,0.22)] backdrop-blur-xl"
             : "border-white/65 bg-white/64 shadow-[0_8px_24px_rgba(12,34,70,0.08),0_0_0_1px_rgba(44,140,255,0.16),0_0_18px_rgba(44,140,255,0.2)] backdrop-blur-lg"
         }`}
       >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-1 left-0 w-8 bg-[radial-gradient(90%_80%_at_0%_50%,rgba(44,140,255,0.45)_0%,rgba(44,140,255,0.2)_40%,rgba(44,140,255,0)_100%)] sm:w-10"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-1 right-0 w-8 bg-[radial-gradient(90%_80%_at_100%_50%,rgba(44,140,255,0.45)_0%,rgba(44,140,255,0.2)_40%,rgba(44,140,255,0)_100%)] sm:w-10"
+        />
         <Link to="/" className="min-w-0 shrink text-base font-semibold tracking-tight text-[var(--apple-text)] sm:text-xl lg:text-2xl">
           Gadgetfix<span className="text-[var(--apple-blue)]">+</span>
         </Link>

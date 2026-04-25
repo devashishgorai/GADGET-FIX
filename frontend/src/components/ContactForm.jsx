@@ -52,7 +52,11 @@ export default function Contact() {
           <iframe
             title="location"
             className="h-64 w-full rounded-2xl border border-black/10"
-            src="https://maps.google.com/maps?q=kolkata&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3991.4379092488975!2d88.51058567562706!3d22.563980079497895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020bb8c24032f9%3A0x9d82b5f6d03fd798!2sGADGET%20FIX%20-%20Phone%20Repairs!5e1!3m2!1sen!2sin!4v1777146412377!5m2!1sen!2sin"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
           />
 
           <div className="space-y-4 rounded-2xl border border-black/10 bg-white/80 p-5">
