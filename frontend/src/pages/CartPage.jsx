@@ -63,8 +63,8 @@ export default function CartPage() {
               <div className="space-y-4">
                 {cart.map((item) => (
                   <div key={item.id} className="apple-card p-4 md:p-5">
-                    <div className="flex gap-4">
-                      <img src={item.image} alt={item.name} className="h-24 w-24 rounded-2xl object-cover" />
+                    <div className="flex flex-col gap-4 sm:flex-row">
+                      <img src={item.image} alt={item.name} className="h-24 w-full rounded-2xl object-cover sm:w-24" />
 
                       <div className="min-w-0 flex-1">
                         <h3 className="truncate text-lg font-semibold tracking-tight">{item.name}</h3>
@@ -95,7 +95,7 @@ export default function CartPage() {
 
                           <button
                             type="button"
-                            className="ml-auto inline-flex items-center gap-1 rounded-xl border border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-700"
+                            className="inline-flex items-center gap-1 rounded-xl border border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-semibold text-rose-700 sm:ml-auto"
                             onClick={() => removeFromCart(item.id)}
                             aria-label={`Remove ${item.name} from cart`}
                           >

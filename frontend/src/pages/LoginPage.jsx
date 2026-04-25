@@ -67,6 +67,11 @@ export default function LoginPage() {
         return;
       }
 
+      const containerWidth = Math.floor(
+        googleButtonRef.current?.parentElement?.getBoundingClientRect().width || 320
+      );
+      const buttonWidth = Math.max(220, Math.min(320, containerWidth));
+
       window.google.accounts.id.initialize({
         client_id: googleClientId,
         callback: handleGoogleResponse,
@@ -78,7 +83,7 @@ export default function LoginPage() {
         size: "large",
         shape: "pill",
         text: "continue_with",
-        width: "320",
+        width: `${buttonWidth}`,
       });
     };
 
@@ -194,7 +199,7 @@ export default function LoginPage() {
 
             {googleClientId ? (
               <div className="flex justify-center">
-                <div ref={googleButtonRef} />
+                <div ref={googleButtonRef} className="w-full max-w-[320px]" />
               </div>
             ) : (
               <div className="rounded-2xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-700">
