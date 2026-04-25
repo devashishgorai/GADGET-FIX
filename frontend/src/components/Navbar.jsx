@@ -1,12 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingBag } from "lucide-react";
+import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { totalItems } = useContext(CartContext);
+  const { isAuthenticated, user, logout } = useContext(AuthContext);
 
   useEffect(() => {
     setIsOpen(false);
@@ -35,6 +39,7 @@ export default function Navbar() {
     { name: "Home", path: "/" },
     { name: "Services", path: "/services" },
     { name: "Shop", path: "/shop" },
+    { name: "Cart", path: "/cart" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -74,11 +79,30 @@ export default function Navbar() {
             </Link>
           ))}
 
-          <Link to="/contact">
-            <button className="btn-primary px-5 py-2.5 text-xs md:text-sm">
-              Talk To Expert
+          <Link to="/cart" className="relative inline-flex">
+            <button className="btn-secondary px-4 py-2.5 text-xs md:text-sm">
+              <span className="inline-flex items-center gap-1">
+                <ShoppingBag size={15} /> Cart
+              </span>
             </button>
+            {totalItems > 0 && (
+              <span className="absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--apple-blue)] px-1 text-[10px] font-semibold text-white">
+                {totalItems}
+              </span>
+            )}
           </Link>
+
+          {isAuthenticated ? (
+            <button className="btn-primary px-5 py-2.5 text-xs md:text-sm" type="button" onClick={logout}>
+              Logout {user?.name ? `(${user.name})` : ""}
+            </button>
+          ) : (
+            <Link to="/login">
+              <button className="btn-primary px-5 py-2.5 text-xs md:text-sm" type="button">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
 
         <div className="md:hidden">
@@ -119,6 +143,9 @@ export default function Navbar() {
             <Link to="/contact">
               <button className="btn-primary w-full">Talk To Expert</button>
             </Link>
+            <Link to="/cart" className="relative">
+              <button className="btn-secondary w-full">Open Cart ({totalItems})</button>
+            </Link>
             <Link to="/shop">
               <button className="btn-secondary w-full">Visit Shop</button>
             </Link>
@@ -127,6 +154,15 @@ export default function Navbar() {
                 Explore Services
               </button>
             </Link>
+            {isAuthenticated ? (
+              <button className="btn-primary w-full" type="button" onClick={logout}>
+                Logout
+              </button>
+            ) : (
+              <Link to="/login">
+                <button className="btn-primary w-full" type="button">Login</button>
+              </Link>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

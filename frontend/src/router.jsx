@@ -6,6 +6,8 @@ const Home = lazy(() => import("./pages/Home"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const ShopPage = lazy(() => import("./pages/ShopPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const CartPage = lazy(() => import("./pages/CartPage"));
 
 /* ❌ 404 Page */
 function NotFound() {
@@ -36,9 +38,10 @@ export default function Router() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cart" element={<CartPage />} />
 
         {/* Future Routes */}
-        {/* <Route path="/cart" element={<CartPage />} /> */}
         {/* <Route path="/booking" element={<BookingPage />} /> */}
 
         {/* 404 Catch */}

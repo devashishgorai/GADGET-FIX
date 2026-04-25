@@ -13,7 +13,7 @@
   --apple-blue-hover: #1c63d3;
   --apple-accent: #2c8cff;
   --apple-shadow: 0 24px 54px rgba(13, 41, 92, 0.1);
-  --space-page-top: 6rem;
+  --space-page-top: 6.5rem;
   --space-section-sm: 3.5rem;
   --space-section-md: 4.75rem;
   --space-section-lg: 6rem;
@@ -305,7 +305,7 @@ button:disabled {
   }
 
   :root {
-    --space-page-top: 5.5rem;
+    --space-page-top: 5.9rem;
     --space-section-sm: 2.6rem;
     --space-section-md: 3.5rem;
     --space-section-lg: 4.4rem;
@@ -343,7 +343,7 @@ button:disabled {
 
 @media (max-width: 375px) {
   :root {
-    --space-page-top: 5.1rem;
+    --space-page-top: 5.4rem;
     --space-section-sm: 2.2rem;
     --space-section-md: 2.9rem;
     --space-section-lg: 3.6rem;

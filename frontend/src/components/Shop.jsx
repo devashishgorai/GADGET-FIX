@@ -3,10 +3,24 @@ import { CartContext } from "../context/CartContext";
 import { motion } from "framer-motion";
 import { ShoppingCart, Star } from "lucide-react";
 import useAdaptiveMotion from "../hooks/useAdaptiveMotion";
+import { AuthContext } from "../context/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Shop() {
   const { addToCart } = useContext(CartContext);
+  const { isAuthenticated } = useContext(AuthContext);
   const { simplifyMotion } = useAdaptiveMotion();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleAddToCart = (product) => {
+    if (!isAuthenticated) {
+      navigate("/login", { state: { from: location } });
+      return;
+    }
+
+    addToCart(product);
+  };
 
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -85,15 +99,20 @@ function Shop() {
 
             <p className="mt-2 font-medium text-[var(--apple-muted)]">₹{p.price}</p>
             <p className="mt-1 text-sm text-[var(--apple-muted)]">Fast dispatch and compatibility support included.</p>
+            {!isAuthenticated && (
+              <p className="mt-1 text-xs font-medium text-[var(--apple-blue)]">
+                Sign in to add this item to your cart.
+              </p>
+            )}
 
             <button
               type="button"
-              onClick={() => addToCart(p)}
+              onClick={() => handleAddToCart(p)}
               className="btn-primary mt-4 w-full gap-2 rounded-2xl"
               aria-label={`Add ${p.name} to cart for ${p.price} rupees`}
             >
               <ShoppingCart size={18} />
-              Add to Cart Securely
+              {isAuthenticated ? "Add to Cart Securely" : "Login to Add to Cart"}
             </button>
           </div>
         </motion.div>

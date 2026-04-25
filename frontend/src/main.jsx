@@ -5,6 +5,7 @@ import "./styles/globals.css";
 
 /* 🛒 Example: Global Providers (Cart, Auth etc.) */
 import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
 
 /* ⚠️ Error Boundary (prevents app crash) */
 class ErrorBoundary extends React.Component {
@@ -43,9 +44,11 @@ class ErrorBoundary extends React.Component {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <CartProvider>
-        <App />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </AuthProvider>
     </ErrorBoundary>
   </React.StrictMode>
 );
